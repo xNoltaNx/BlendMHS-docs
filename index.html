@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlendMHS Documentation</title>
+    <style>
+        :root {
+            --primary: #E87D0D;
+            --primary-dark: #C26508;
+            --bg-dark: #1a1a2e;
+            --bg-card: #16213e;
+            --bg-code: #0f0f23;
+            --text-light: #eaeaea;
+            --text-muted: #a0a0a0;
+            --accent-blue: #4a9eff;
+            --accent-green: #4ade80;
+            --accent-purple: #a78bfa;
+            --border-color: #2d3748;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #0f3460 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .banner {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .banner-container {
+            position: relative;
+            background: transparent;
+        }
+
+        .banner-overlay {
+            display: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: left;
+            padding: 2rem 0 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h1 {
+            font-size: 4rem;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+        }
+
+        h1 .blend {
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, #ff9a3c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h1 .mhs {
+            font-weight: 400;
+            background: linear-gradient(135deg, #ff9a3c 0%, var(--accent-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .subtitle .highlight {
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+
+        .header-divider {
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent-blue));
+            margin: 1.5rem 0 0.75rem;
+            border-radius: 2px;
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        h2::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        h3 {
+            color: var(--accent-blue);
+            font-size: 1.3rem;
+            margin: 1.5rem 0 0.75rem;
+        }
+
+        h4 {
+            color: var(--accent-green);
+            font-size: 1.1rem;
+            margin: 1rem 0 0.5rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(232, 125, 13, 0.15);
+        }
+
+        .intro-card {
+            background: linear-gradient(135deg, var(--bg-card) 0%, #1e3a5f 100%);
+            border-left: 4px solid var(--primary);
+        }
+
+        .highlight-card {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
+            border: 1px solid var(--accent-blue);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background: linear-gradient(90deg, var(--primary-dark), var(--primary));
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background: rgba(74, 158, 255, 0.05);
+        }
+
+        .tool-name {
+            color: var(--accent-blue);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .feature-name {
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
+        code {
+            background: var(--bg-code);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+            color: var(--accent-purple);
+        }
+
+        pre {
+            background: var(--bg-code);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid var(--border-color);
+            margin: 1rem 0;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: var(--text-light);
+        }
+
+        .wip-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #f59e0b, #d97706);
+            color: #000;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-left: 0.5rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .feature-item {
+            background: var(--bg-card);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            min-width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(232, 125, 13, 0.2);
+            border-radius: 8px;
+            margin-top: 0.15rem;
+        }
+
+        .feature-content h4 {
+            color: var(--accent-green);
+            margin-bottom: 0.25rem;
+            margin-top: 0;
+            line-height: 1.3;
+        }
+
+        .feature-content p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 1rem;
+        }
+
+        ul li {
+            position: relative;
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        ul.feature-list li::before {
+            content: '✓';
+            color: var(--accent-green);
+        }
+
+        .folder-structure {
+            font-family: 'Consolas', 'Monaco', monospace;
+            line-height: 1.8;
+        }
+
+        .folder {
+            color: var(--accent-blue);
+        }
+
+        .comment {
+            color: var(--text-muted);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            margin: 3rem 0;
+        }
+
+        .hot-reload-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #10b981, #059669);
+            color: #fff;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-left: 0.5rem;
+        }
+
+        .feature-tag {
+            display: inline-block;
+            background: rgba(74, 158, 255, 0.2);
+            color: var(--accent-blue);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin: 0.1rem;
+        }
+
+        .screenshot {
+            width: 100%;
+            max-width: 280px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            flex-shrink: 0;
+        }
+
+        .screenshot-container {
+            text-align: center;
+        }
+
+        .screenshot-caption {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+
+        .card-with-image {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .card-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        @media (max-width: 900px) {
+            .card-with-image {
+                flex-direction: column;
+            }
+
+            .screenshot {
+                max-width: 300px;
+                margin: 1rem auto 0;
+            }
+
+            .screenshot-container {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="banner-container">
+        <img src="images/BlendMHS_WebBanner.png" alt="BlendMHS Banner" class="banner" onerror="this.style.display='none'">
+        <div class="banner-overlay"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1><span class="blend">Blend</span><span class="mhs">MHS</span></h1>
+            <p class="subtitle">Blender to Meta Horizon Studio Pipeline</p>
+            <div class="header-divider"></div>
+        </header>
+
+        <div class="card intro-card">
+            <p><strong>BlendMHS</strong> is a Blender addon designed to streamline the content creation workflow for <strong>Meta Horizon Studio (MHS)</strong>. It provides a complete pipeline for exporting USD Scene Compositions, Static Meshes, Animated Meshes, and Materials to Meta Horizon Studio.</p>
+        </div>
+
+        <h2>Key Features</h2>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <div class="feature-icon">📝</div>
+                <div class="feature-content">
+                    <h4>Custom USD Exporter</h4>
+                    <p>Purpose-built USD authoring specifically optimized for MHS — not Blender's built-in exporter</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🔥</div>
+                <div class="feature-content">
+                    <h4>Hot-Reload Workflow</h4>
+                    <p>Auto-export on save combined with MHS hot-reloading for rapid iteration</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🔗</div>
+                <div class="feature-content">
+                    <h4>Automatic Instancing</h4>
+                    <p>Detects Blender linked instances and exports them once with USD references</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🧩</div>
+                <div class="feature-content">
+                    <h4>Geometry Nodes Support - WIP</h4>
+                    <p>Automatically extracts instances from geometry nodes modifiers</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🎬</div>
+                <div class="feature-content">
+                    <h4>Skeletal Animation</h4>
+                    <p>Full UsdSkel support with armatures, skin weights, and action export</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🎯</div>
+                <div class="feature-content">
+                    <h4>Selective Action Export</h4>
+                    <p>Choose which animation actions to include with per-action enable/disable</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">⚙️</div>
+                <div class="feature-content">
+                    <h4>Modifier Support</h4>
+                    <p>Option to apply modifiers during export for baked geometry</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🎨</div>
+                <div class="feature-content">
+                    <h4>Vertex Color Export</h4>
+                    <p>Auto-detects and exports vertex color data as displayColor primvars</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">📐</div>
+                <div class="feature-content">
+                    <h4>Coordinate Conversion</h4>
+                    <p>Automatic Z-up to Y-up conversion for MHS compatibility</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">📦</div>
+                <div class="feature-content">
+                    <h4>Multi-Layout Export</h4>
+                    <p>Configure and export multiple scene compositions from one file</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">📊</div>
+                <div class="feature-content">
+                    <h4>LOD Support</h4>
+                    <p>Manual or auto-generated LODs with configurable distance ratios</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🎭</div>
+                <div class="feature-content">
+                    <h4>Material Parity</h4>
+                    <p>Blender materials designed for 1:1 mapping to MHS renderer_module shaders</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2>USD Export Tools</h2>
+
+        <div class="card highlight-card">
+            <h3>🔄 Hot-Reload Workflow <span class="hot-reload-badge">Rapid Iteration</span></h3>
+            <p>BlendMHS leverages MHS's <strong>Hot-Reloading</strong> capabilities combined with an <strong>Auto-Export on Save</strong> feature. This allows artists to work entirely in Blender — simply save your file and your changes are automatically exported to USD and hot-reloaded in Meta Horizon Studio for instant preview.</p>
+        </div>
+
+        <h3>Export Scene Composition</h3>
+        <div class="card">
+            <div class="card-with-image">
+                <div class="card-content">
+                    <p>Export complete scene layouts with full control over what gets included:</p>
+                    <ul>
+                        <li><strong>Multiple Layout Configurations</strong> — Set up multiple scene compositions using Blender's native collections system</li>
+                        <li><strong>Collection-Based Organization</strong> — Add collections to layouts; all child collections are automatically included</li>
+                        <li><strong>Flexible Export Options:</strong>
+                            <ul>
+                                <li><strong>Export All Layouts</strong> — Export all enabled layout configurations at once</li>
+                                <li><strong>Export Single Layout</strong> — Export only the selected layout configuration</li>
+                                <li><strong>Enable/Disable Layouts</strong> — Toggle individual layouts on/off for selective export</li>
+                            </ul>
+                        </li>
+                        <li><strong>Automatic Instancing</strong> — Duplicate meshes are detected and exported once with USD references</li>
+                        <li><strong>Hierarchy Preservation</strong> — Parent-child relationships and transforms are maintained</li>
+                        <li><strong>Geometry Nodes Support</strong> — Instances from geometry nodes modifiers are automatically extracted</li>
+                    </ul>
+                </div>
+                <div class="screenshot-container">
+                    <img src="images/SceneExport_Example.png" alt="Scene Export Panel" class="screenshot" onerror="this.parentElement.style.display='none'">
+                    <p class="screenshot-caption">Scene Composition Export Panel</p>
+                </div>
+            </div>
+        </div>
+
+        <h3>Export USDA Mesh</h3>
+        <div class="card">
+            <p>Export selected static mesh objects as individual USD files with comprehensive geometry data:</p>
+            <ul class="feature-list">
+                <li><strong>Geometry</strong> — Vertex positions with automatic Y-up coordinate conversion</li>
+                <li><strong>Normals</strong> — Per-face-vertex normals (faceVarying interpolation)</li>
+                <li><strong>UV Maps</strong> — Primary UV coordinates (<code>st</code>) with indexed storage</li>
+                <li><strong>Lightmap UVs</strong> — Optional second UV channel (<code>st1</code>) for lightmapping</li>
+                <li><strong>Vertex Colors</strong> — Auto-detected <code>displayColor</code> and <code>displayOpacity</code> primvars</li>
+                <li><strong>Materials</strong> — Automatic material export with texture references</li>
+                <li><strong>Multi-Material Support</strong> — Face subsets with proper material bindings</li>
+                <li><strong>Modifier Support</strong> — Option to apply modifiers during export</li>
+            </ul>
+        </div>
+
+        <h3>Export Animated USDA Mesh</h3>
+        <div class="card">
+            <div class="card-with-image">
+                <div class="card-content">
+                    <p>Export skinned meshes with skeletal animation using the <strong>UsdSkel</strong> schema:</p>
+                    <ul class="feature-list">
+                        <li><strong>Full Geometry Export</strong> — All static mesh features (normals, UVs, vertex colors, materials)</li>
+                        <li><strong>Skeleton Export</strong> — Complete bone hierarchy with bind transforms and rest transforms</li>
+                        <li><strong>Skin Weights</strong> — Per-vertex joint indices and weights for mesh deformation</li>
+                        <li><strong>Animation Actions</strong> — Export Blender Actions as USD SkelAnimation prims</li>
+                        <li><strong>Selective Action Export</strong> — Choose which actions to include via the animation list UI</li>
+                        <li><strong>Separate Animation Files</strong> — Option to export animations as separate USD files</li>
+                        <li><strong>Automatic Armature Detection</strong> — Select mesh or armature; associated objects are found automatically</li>
+                        <li><strong>Timeline Integration</strong> — Selecting an action updates the timeline range for preview</li>
+                    </ul>
+                    <p style="margin-top: 1rem; color: var(--text-muted);"><em>Actions are sampled at a configurable frame rate and exported with translation, rotation, and scale keyframes for each bone.</em></p>
+                </div>
+                <div class="screenshot-container">
+                    <img src="images/Animation_Example.png" alt="Animation Export Panel" class="screenshot" onerror="this.parentElement.style.display='none'">
+                    <p class="screenshot-caption">Animation Export Settings</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2>Export Structure</h2>
+        <div class="card">
+            <pre><code class="folder-structure"><span class="folder">{project_path}/</span>
+├── <span class="folder">layouts/</span>          <span class="comment"># Scene composition files (.usda)</span>
+├── <span class="folder">meshes/</span>           <span class="comment"># Individual mesh USD files</span>
+├── <span class="folder">materials/</span>        <span class="comment"># Material definition files</span>
+├── <span class="folder">textures/</span>         <span class="comment"># Texture assets (BC, MRO, N, E)</span>
+└── <span class="folder">shaders/</span>          <span class="comment"># Generated .surface shader files (WIP)</span></code></pre>
+        </div>
+
+        <h2>Export Caching System</h2>
+        <div class="card">
+            <div class="card-with-image">
+                <div class="card-content">
+                    <p>Intelligent caching system that dramatically speeds up iterative exports:</p>
+                    <ul>
+                        <li><strong>Hash-Based Tracking</strong> — MD5 hashes of mesh data, materials, and textures detect changes</li>
+                        <li><strong>Skip Unchanged Files</strong> — Only modified assets are re-exported</li>
+                        <li><strong>Force Rebuild Toggle</strong> — Override cache to force complete re-export when needed</li>
+                        <li><strong>Clear Cache Button</strong> — Invalidate all cached data for a fresh start</li>
+                        <li><strong>Export Statistics Panel</strong> — Shows files exported vs. skipped, time saved, and breakdown by type</li>
+                    </ul>
+                </div>
+                <div class="screenshot-container">
+                    <img src="images/Cache_Example.png" alt="Export Cache Statistics" class="screenshot" onerror="this.parentElement.style.display='none'">
+                    <p class="screenshot-caption">Export Cache Statistics Panel</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>LOD (Level of Detail) System</h2>
+        <div class="card">
+            <div class="card-with-image">
+                <div class="card-content">
+                    <ul>
+                        <li>Add/remove LOD levels with configurable distance ratios</li>
+                        <li><strong>Manual method</strong> — Assign custom LOD meshes for each level</li>
+                        <li><strong>Decimate method</strong> — Auto-generate simplified geometry with percentage control</li>
+                        <li><strong>LOD as References</strong> — Option to export LOD meshes as separate USD files</li>
+                        <li><strong>USD Variant Sets</strong> — LODs exported using standard USD LOD variant structure</li>
+                    </ul>
+                </div>
+                <div class="screenshot-container">
+                    <img src="images/LOD_Example.png" alt="LOD Settings Panel" class="screenshot" onerror="this.parentElement.style.display='none'">
+                    <p class="screenshot-caption">LOD Settings Panel</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2>MHS Editor Integration</h2>
+
+        <div class="card highlight-card">
+            <h3>🔄 Automatic Material Processing <span class="hot-reload-badge">Zero-Click</span></h3>
+            <p>When a project containing BlendMHS assets is opened, the <strong>Auto-Processor</strong> automatically detects BlendMHS metadata, creates MHS-compatible material variants, and updates mesh references — no manual intervention required. Simply export from Blender and open your project in MHS.</p>
+        </div>
+
+        <h3>BlendMHS Toolkit Panel</h3>
+        <div class="card">
+            <div class="card-with-image">
+                <div class="card-content">
+                    <p>A custom <strong>Meta Horizon Studio editor panel</strong> that provides automatic material conversion for BlendMHS-exported USD assets:</p>
+                    <ul>
+                        <li><strong>Process Materials</strong> — Scans project's <code>materials/</code> folder, detects BlendMHS metadata, and creates MHS-compatible material variants</li>
+                        <li><strong>Auto-Processing Callback</strong> — Automatically triggers material processing on project load, creating variants and updating mesh references</li>
+                        <li><strong>Intelligent Caching</strong> — Skips already-processed materials for efficient re-imports</li>
+                    </ul>
+                    <h4>Custom USD Import Paths</h4>
+                    <p>BlendMHS embeds <code>customLayerData</code> metadata in exported USD files, enabling MHS to recognize and specially handle these compositions. This extensible architecture supports:</p>
+                    <ul>
+                        <li><strong>Custom Attribute Mapping</strong> — Define how Blender attributes translate to MHS properties</li>
+                        <li><strong>Pipeline Hooks</strong> — Inject custom processing at various import stages</li>
+                        <li><strong>Future Extensions</strong> — Lighting actors, script hooks, bidirectional sync, and more</li>
+                    </ul>
+                </div>
+                <div class="screenshot-container">
+                    <img src="images/BlenderMHS_Panel_Example.png" alt="MHS Blender USD Toolkit Panel" class="screenshot" onerror="this.parentElement.style.display='none'">
+                    <p class="screenshot-caption">MHS Blender USD Toolkit Panel</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2>Planned Work for v1.0</h2>
+
+        <h3>Established Material Workflow</h3>
+        <div class="card">
+            <div class="card-with-image">
+                <div class="card-content">
+                    <p>Development of Blender material node groups at <strong>full parity</strong> with MHS renderer_module shaders, enabling direct 1:1 mapping from Blender scenes to Meta Horizon Studio:</p>
+                    <ul>
+                        <li><strong>Isotropic Materials</strong> — Standard PBR with variants: Simple, Dynamic, Masked, Uniform, Skinned</li>
+                        <li><strong>Unlit Materials</strong> — Emissive/unlit with variants: Standard, Masked, Blend, Skinned</li>
+                        <li><strong>Foliage Materials</strong> — Optimized vegetation with alpha masking</li>
+                        <li><strong>Emissive Materials</strong> — Full emissive texture support with lightmap integration</li>
+                    </ul>
+                    <p style="margin-top: 1rem;">This establishes a <strong>standardized material library</strong> in Blender that maps directly to MHS shaders — artists select a material type, configure textures, and export knowing the result will render identically in MHS.</p>
+                </div>
+                <div class="screenshot-container">
+                    <img src="images/MaterialSettings_Example.png" alt="Material Settings Panel" class="screenshot" onerror="this.parentElement.style.display='none'">
+                    <p class="screenshot-caption">Material Settings Panel</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2>WIP Advanced User Tools <span class="wip-badge">Work in Progress</span></h2>
+
+        <h3>MaterialMap Auto-Export</h3>
+        <div class="card">
+            <div class="card-with-image">
+                <div class="card-content">
+                    <p>Automatically detects and exports materials during scene export:</p>
+                    <ul>
+                        <li>Detects HSR materials not yet in <code>materialMap.json</code></li>
+                        <li>Generates shader files (<code>.surface</code>) with overwrite protection</li>
+                        <li>Appends new entries to <code>materialMap.json</code> without overwriting existing entries</li>
+                    </ul>
+                </div>
+                <div class="screenshot-container">
+                    <img src="images/MaterialMap_Example.png" alt="MaterialMap Auto-Export" class="screenshot" onerror="this.parentElement.style.display='none'">
+                    <p class="screenshot-caption">MaterialMap Auto-Export Settings</p>
+                </div>
+            </div>
+        </div>
+
+        <h3>Shader Creator</h3>
+        <div class="card">
+            <div class="card-with-image">
+                <div class="card-content">
+                    <p>Artist-driven tool for creating and editing HSR shader node groups:</p>
+                    <ul>
+                        <li>Create new shaders or edit existing <code>HSR_</code> node groups</li>
+                        <li>Define shader properties (Float, Color, Vector, Texture, Bool)</li>
+                        <li>Configure USD attribute mappings per property</li>
+                        <li>Support for per-channel texture mapping (RGB/A channels)</li>
+                        <li>Multiple texture source types: USD Attribute, String Pattern, or Target Path</li>
+                        <li>Generate <code>.surface</code> boilerplate files for the HSR engine</li>
+                        <li>Organize properties into collapsible panels</li>
+                    </ul>
+                </div>
+                <div class="screenshot-container">
+                    <img src="images/ShaderCreator_Example.png" alt="Shader Creator Panel" class="screenshot" onerror="this.parentElement.style.display='none'">
+                    <p class="screenshot-caption">Shader Creator Panel</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>BlendMHS Documentation — Meta Horizon Studio Pipeline</p>
+            <p>Created by <a href="#">Randy Nolta</a></p>
+        </footer>
+    </div>
+</body>
+</html>
