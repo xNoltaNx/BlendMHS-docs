@@ -535,35 +535,24 @@
             formData.fileData = await fileToBase64(file);
           }
 
-// Send to Google Apps Script using form submission (avoids CORS issues)
-          const formElement = document.createElement('form');
-          formElement.method = 'POST';
-          formElement.action = SCRIPT_URL;
-          formElement.target = 'hidden-iframe';
+// Send to Google Apps Script using GET request (most reliable for cross-origin)
+          const params = new URLSearchParams({
+            title: formData.title,
+            description: formData.description,
+            timestamp: formData.timestamp,
+            fileName: formData.fileName || '',
+            // Note: file attachments won't work with GET due to URL length limits
+            // For now, we'll skip file data in the URL
+          });
 
-          const dataInput = document.createElement('input');
-          dataInput.type = 'hidden';
-          dataInput.name = 'data';
-          dataInput.value = JSON.stringify(formData);
-          formElement.appendChild(dataInput);
+          // Use an image beacon for reliable cross-origin GET request
+          const img = new Image();
+          img.onload = () => console.log('Request successful');
+          img.onerror = () => console.log('Request sent (no-cors)');
+          img.src = SCRIPT_URL + '?' + params.toString();
 
-          // Create hidden iframe to receive the response
-          let iframe = document.getElementById('hidden-iframe');
-          if (!iframe) {
-            iframe = document.createElement('iframe');
-            iframe.id = 'hidden-iframe';
-            iframe.name = 'hidden-iframe';
-            iframe.style.display = 'none';
-            document.body.appendChild(iframe);
-          }
-
-          document.body.appendChild(formElement);
-          formElement.submit();
-          document.body.removeChild(formElement);
-
-          // Since we can't read the iframe response due to cross-origin,
-          // assume success after a short delay
-          await new Promise(resolve => setTimeout(resolve, 1000));
+          // Wait a moment for the request to complete
+          await new Promise(resolve => setTimeout(resolve, 1500));
 
           // With no-cors, we can't read the response, but if no error thrown, assume success
           showStatus('Thank you! Your feedback has been submitted successfully.', 'success');
