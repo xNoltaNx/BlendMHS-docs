@@ -517,11 +517,23 @@
           const title = document.getElementById('title').value.trim();
           const description = document.getElementById('description').value.trim();
 
+          // Format timestamp in a readable way (e.g., "Dec 23, 2025, 2:42:25 AM")
+          const now = new Date();
+          const formattedTimestamp = now.toLocaleString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true
+          });
+
           // Prepare form data
           const formData = {
             title: title,
             description: description,
-            timestamp: new Date().toISOString(),
+            timestamp: formattedTimestamp,
             fileName: '',
             fileData: '',
             fileType: ''
@@ -535,24 +547,49 @@
             formData.fileData = await fileToBase64(file);
           }
 
-// Send to Google Apps Script using GET request (most reliable for cross-origin)
-          const params = new URLSearchParams({
+console.log('Starting submission...');
+          console.log('Form data:', formData);
+
+          // Create a hidden iframe for form submission (most reliable cross-origin method)
+          const iframeName = 'feedback-iframe-' + Date.now();
+          const iframe = document.createElement('iframe');
+          iframe.name = iframeName;
+          iframe.style.display = 'none';
+          document.body.appendChild(iframe);
+
+          // Create a hidden form targeting the iframe
+          const hiddenForm = document.createElement('form');
+          hiddenForm.method = 'POST';
+          hiddenForm.action = SCRIPT_URL;
+          hiddenForm.target = iframeName;
+          hiddenForm.style.display = 'none';
+
+          // Add form fields
+          const fields = {
             title: formData.title,
             description: formData.description,
             timestamp: formData.timestamp,
-            fileName: formData.fileName || '',
-            // Note: file attachments won't work with GET due to URL length limits
-            // For now, we'll skip file data in the URL
-          });
+            fileName: formData.fileName || ''
+          };
 
-          // Use an image beacon for reliable cross-origin GET request
-          const img = new Image();
-          img.onload = () => console.log('Request successful');
-          img.onerror = () => console.log('Request sent (no-cors)');
-          img.src = SCRIPT_URL + '?' + params.toString();
+          for (const [key, value] of Object.entries(fields)) {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = key;
+            input.value = value;
+            hiddenForm.appendChild(input);
+          }
 
-          // Wait a moment for the request to complete
-          await new Promise(resolve => setTimeout(resolve, 1500));
+          document.body.appendChild(hiddenForm);
+          console.log('Submitting form to:', SCRIPT_URL);
+          hiddenForm.submit();
+
+          // Clean up after submission
+          await new Promise(resolve => setTimeout(resolve, 2000));
+          try {
+            document.body.removeChild(hiddenForm);
+            document.body.removeChild(iframe);
+          } catch(e) {}
 
           // With no-cors, we can't read the response, but if no error thrown, assume success
           showStatus('Thank you! Your feedback has been submitted successfully.', 'success');
