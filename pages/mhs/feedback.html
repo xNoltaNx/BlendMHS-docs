@@ -564,12 +564,14 @@ console.log('Starting submission...');
           hiddenForm.target = iframeName;
           hiddenForm.style.display = 'none';
 
-          // Add form fields
+          // Add form fields (including file data if present)
           const fields = {
             title: formData.title,
             description: formData.description,
             timestamp: formData.timestamp,
-            fileName: formData.fileName || ''
+            fileName: formData.fileName || '',
+            fileData: formData.fileData || '',
+            fileType: formData.fileType || ''
           };
 
           for (const [key, value] of Object.entries(fields)) {
