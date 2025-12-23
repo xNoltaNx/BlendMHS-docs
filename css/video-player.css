@@ -1,0 +1,318 @@
+/* BlendMHS Video Player Styles - Plyr Theme */
+
+/* Video Player Container */
+.video-section {
+  margin: 1.5rem 0;
+}
+
+.video-container {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  width: 100%;
+}
+
+/* Plyr Custom Theme */
+.plyr-container {
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.plyr-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.plyr-container .plyr {
+  height: 100%;
+}
+
+.plyr--video {
+  border-radius: 8px;
+  height: 100%;
+}
+
+.plyr__poster {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.plyr--full-ui input[type=range] {
+  color: var(--primary);
+}
+
+.plyr__control--overlaid {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark)) !important;
+  box-shadow: 0 4px 20px rgba(232, 125, 13, 0.4);
+}
+
+.plyr__control--overlaid:hover {
+  background: linear-gradient(135deg, #ff9a3c, var(--primary)) !important;
+}
+
+.plyr__controls {
+  background: linear-gradient(to top, rgba(22, 33, 62, 0.95), transparent) !important;
+}
+
+.plyr__control:hover {
+  background: var(--primary) !important;
+}
+
+.plyr__menu__container {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+/* Video wrapper for aspect ratio */
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.video-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent-blue));
+  z-index: 10;
+}
+
+/* Custom Keyboard Action Overlay */
+.player-action-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.player-action-overlay.visible {
+  opacity: 1;
+}
+
+.player-action-overlay .action-icon {
+  font-size: 1.5rem;
+}
+
+.player-action-overlay .action-text {
+  white-space: nowrap;
+}
+
+.player-action-overlay.seek-forward {
+  border-left: 3px solid var(--accent-green);
+}
+
+.player-action-overlay.seek-backward {
+  border-left: 3px solid var(--accent-blue);
+}
+
+.player-action-overlay.speed-change {
+  border-left: 3px solid var(--primary);
+}
+
+.player-action-overlay.volume-change {
+  border-left: 3px solid var(--accent-purple);
+}
+
+.player-action-overlay.playback {
+  border-left: 3px solid var(--accent-green);
+}
+
+/* Keyboard Shortcuts Help Button */
+.hotkeys-help-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.hotkeys-help-btn:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  transform: scale(1.1);
+}
+
+/* Hotkeys Modal Overlay */
+.hotkeys-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+
+.hotkeys-modal-overlay.visible {
+  display: flex;
+}
+
+.hotkeys-modal {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.hotkeys-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--primary);
+}
+
+.hotkeys-modal-header h3 {
+  color: var(--primary);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hotkeys-modal-close {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.hotkeys-modal-close:hover {
+  color: var(--text-light);
+}
+
+.hotkeys-section {
+  margin-bottom: 1rem;
+}
+
+.hotkeys-section-title {
+  color: var(--accent-blue);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hotkeys-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.hotkey-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hotkey-item:last-child {
+  border-bottom: none;
+}
+
+.hotkey-keys {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.hotkey-key {
+  background: var(--bg-code);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
+  font-family: "Consolas", "Monaco", monospace;
+  font-size: 0.8rem;
+  color: var(--accent-purple);
+  min-width: 24px;
+  text-align: center;
+}
+
+.hotkey-plus {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.hotkey-action {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.hotkeys-footer {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.hotkeys-footer kbd {
+  background: var(--bg-code);
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  padding: 0.1rem 0.4rem;
+  font-family: "Consolas", "Monaco", monospace;
+  font-size: 0.75rem;
+  color: var(--accent-purple);
+}

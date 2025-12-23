@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Layout Setup - BlendMHS Documentation</title>
+<link rel="stylesheet" href="../../css/styles.css" />
+    <link rel="stylesheet" href="../../css/video-player.css" />
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <nav class="sidebar">
+        <div class="sidebar-header">
+          <a href="../../index.html">
+            <img src="../../images/BlendMHS_BannerSq.png" alt="BlendMHS" class="sidebar-logo" onerror="this.style.display='none'" />
+          </a>
+          <div class="sidebar-title">
+            <span class="blend">Blend</span><span class="mhs">MHS</span> Docs
+          </div>
+        </div>
+        <div class="sidebar-nav">
+          <div class="nav-section">
+            <div class="nav-section-title"><span>Getting Started</span><span class="chevron">▼</span></div>
+            <ul class="nav-items">
+              <li class="nav-item"><a href="../../index.html" class="nav-link"><span class="nav-icon">🏠</span>Overview</a></li>
+            </ul>
+          </div>
+          <div class="nav-section">
+            <div class="nav-section-title"><span>UI Panels</span><span class="chevron">▼</span></div>
+            <ul class="nav-items">
+              <li class="nav-item"><a href="project-management.html" class="nav-link"><span class="nav-icon">📁</span>Project Management</a></li>
+              <li class="nav-item"><a href="quick-export.html" class="nav-link"><span class="nav-icon">⚡</span>Quick Export</a></li>
+              <li class="nav-item"><a href="layout-setup.html" class="nav-link active"><span class="nav-icon">🗺️</span>Layout Setup</a></li>
+              <li class="nav-item"><a href="mesh-setup.html" class="nav-link"><span class="nav-icon">🔷</span>Mesh Setup</a></li>
+              <li class="nav-item"><a href="animation-setup.html" class="nav-link"><span class="nav-icon">🎬</span>Animation Setup</a></li>
+              <li class="nav-item"><a href="material-settings.html" class="nav-link"><span class="nav-icon">🎨</span>Material Settings</a></li>
+            </ul>
+          </div>
+          <div class="nav-section">
+            <div class="nav-section-title"><span>Preferences</span><span class="chevron">▼</span></div>
+            <ul class="nav-items">
+              <li class="nav-item"><a href="../preferences/addon-preferences.html" class="nav-link"><span class="nav-icon">⚙️</span>Addon Preferences</a></li>
+            </ul>
+          </div>
+<div class="nav-section">
+            <div class="nav-section-title"><span>MHS Integration</span><span class="chevron">▼</span></div>
+            <ul class="nav-items">
+              <li class="nav-item"><a href="../mhs/mhs-toolkit.html" class="nav-link"><span class="nav-icon">🔧</span>MHS Toolkit</a></li>
+            </ul>
+          </div>
+          <div class="nav-section">
+            <div class="nav-section-title"><span>Feedback</span><span class="chevron">▼</span></div>
+            <ul class="nav-items">
+              <li class="nav-item"><a href="../mhs/feedback.html" class="nav-link"><span class="nav-icon">💬</span>Submit Feedback</a></li>
+            </ul>
+          </div>
+        </div>
+<div class="sidebar-footer">
+          <img src="../../images/meta-horizon.svg" alt="Meta Horizon" class="sidebar-footer-logo" />
+        </div>
+      </nav>
+
+      <button class="mobile-menu-toggle" onclick="toggleSidebar()">☰</button>
+
+      <main class="main-content">
+        <div class="container">
+          <div class="breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span class="separator">›</span>
+            <span class="current">Layout Setup</span>
+          </div>
+
+          <div class="page-header">
+            <h1 class="page-title"><span class="icon">🗺️</span>Layout Setup</h1>
+            <p class="page-description">Configure scene composition exports with collection-based organization and multi-layout support.</p>
+          </div>
+
+          <h2>Overview</h2>
+          <div class="card intro-card">
+            <p>The <strong>Layout Setup</strong> panel defines how your Blender scene is organized and exported as USD scene compositions. Layouts reference your mesh assets and define their placement, rotation, and scale in the world.</p>
+          </div>
+
+          <!-- Video Section -->
+          <div class="video-section">
+            <div class="video-container">
+              <div class="video-wrapper">
+                <div class="plyr-container">
+                  <video class="plyr-video" playsinline controls poster="../../images/BlendMHS_WebBanner.png">
+                    <source src="../../videos/layout-setup.mp4" type="video/mp4" />
+                  </video>
+                  <div id="plyr-action-overlay" class="player-action-overlay">
+                    <span class="action-icon"></span>
+                    <span class="action-text"></span>
+                  </div>
+                  <button class="hotkeys-help-btn" id="hotkeys-help-btn" title="Keyboard Shortcuts (?)">?</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h2>Panel Location</h2>
+          <div class="card">
+            <p><code>3D Viewport → Sidebar (N) → BlendMHS → Layout Setup</code></p>
+          </div>
+
+          <h2>Layout Configuration</h2>
+
+          <h3>Layout List</h3>
+          <div class="card">
+            <p>BlendMHS supports multiple layouts from a single Blender file. Each layout corresponds to a separate USD scene composition file.</p>
+            <ul>
+              <li><strong>Add Layout:</strong> Create a new layout configuration</li>
+              <li><strong>Remove Layout:</strong> Delete the selected layout</li>
+              <li><strong>Rename:</strong> Double-click to rename a layout</li>
+            </ul>
+          </div>
+
+          <h3>Collection Assignment</h3>
+          <div class="card">
+            <p>Each layout is linked to a Blender collection. All objects within that collection (and its children) will be included in the layout export.</p>
+            <h4>Best Practices</h4>
+            <ul class="feature-list">
+              <li>Use descriptive collection names (e.g., "Level_01_Layout")</li>
+              <li>Organize assets into sub-collections for clarity</li>
+              <li>Keep shared assets in a separate "Assets" collection</li>
+            </ul>
+          </div>
+
+          <h2>Multi-Layout Support</h2>
+          <div class="card highlight-card">
+            <h4>Multiple Scenes from One File</h4>
+            <p>Create multiple layouts for different purposes:</p>
+            <ul>
+              <li><strong>Level Variants:</strong> Day/night versions of the same level</li>
+              <li><strong>Development Layouts:</strong> Test scenes for specific features</li>
+              <li><strong>Asset Showcases:</strong> Isolated views of asset groups</li>
+            </ul>
+          </div>
+
+          <h2>Export Settings</h2>
+          <div class="feature-grid">
+            <div class="feature-item">
+              <div class="feature-icon">🔗</div>
+              <div class="feature-content">
+                <h4>Instance Detection</h4>
+                <p>Automatically detects linked duplicates and exports them as USD references for optimal performance.</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">📐</div>
+              <div class="feature-content">
+                <h4>Transform Export</h4>
+                <p>Exports object transforms (position, rotation, scale) with automatic coordinate system conversion.</p>
+              </div>
+            </div>
+          </div>
+
+          <h2>Output</h2>
+          <div class="card">
+            <p>Layouts are exported to the <code>layouts/</code> folder in your project directory:</p>
+            <pre><code class="folder-structure"><span class="folder">{project_path}/layouts/</span>
+├── Layout_Name.usda
+└── Another_Layout.usda</code></pre>
+          </div>
+
+          <footer>
+            <p>BlendMHS Documentation — Meta Horizon Studio Pipeline</p>
+            <p>© 2025 Meta</p>
+          </footer>
+        </div>
+      </main>
+</div>
+
+    <!-- Hotkeys Modal -->
+    <div id="hotkeys-modal-overlay" class="hotkeys-modal-overlay">
+      <div class="hotkeys-modal">
+        <div class="hotkeys-modal-header">
+          <h3>⌨️ Keyboard Shortcuts</h3>
+          <button class="hotkeys-modal-close" id="hotkeys-modal-close">&times;</button>
+        </div>
+        <div class="hotkeys-section">
+          <div class="hotkeys-section-title">⏩ Seeking</div>
+          <div class="hotkeys-list">
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">←</span></div><span class="hotkey-action">Seek backward 1 second</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">→</span></div><span class="hotkey-action">Seek forward 1 second</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">Shift</span><span class="hotkey-plus">+</span><span class="hotkey-key">←</span></div><span class="hotkey-action">Seek backward 10 seconds</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">Shift</span><span class="hotkey-plus">+</span><span class="hotkey-key">→</span></div><span class="hotkey-action">Seek forward 10 seconds</span></div>
+          </div>
+        </div>
+        <div class="hotkeys-section">
+          <div class="hotkeys-section-title">🏃 Playback Speed</div>
+          <div class="hotkeys-list">
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">Ctrl</span><span class="hotkey-plus">+</span><span class="hotkey-key">←</span></div><span class="hotkey-action">Decrease speed</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">Ctrl</span><span class="hotkey-plus">+</span><span class="hotkey-key">→</span></div><span class="hotkey-action">Increase speed</span></div>
+          </div>
+        </div>
+        <div class="hotkeys-section">
+          <div class="hotkeys-section-title">▶️ Playback</div>
+          <div class="hotkeys-list">
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">Space</span><span class="hotkey-plus">or</span><span class="hotkey-key">K</span></div><span class="hotkey-action">Play / Pause</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">F</span></div><span class="hotkey-action">Toggle fullscreen</span></div>
+          </div>
+        </div>
+        <div class="hotkeys-section">
+          <div class="hotkeys-section-title">🔊 Volume</div>
+          <div class="hotkeys-list">
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">↑</span></div><span class="hotkey-action">Increase volume</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">↓</span></div><span class="hotkey-action">Decrease volume</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">M</span></div><span class="hotkey-action">Mute / Unmute</span></div>
+          </div>
+        </div>
+        <div class="hotkeys-footer">Press <kbd>?</kbd> or <kbd>Esc</kbd> to close</div>
+      </div>
+    </div>
+
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    <script src="../../js/video-player.js"></script>
+    <script>
+      function toggleSidebar() { document.querySelector(".sidebar").classList.toggle("open"); }
+      document.querySelectorAll(".nav-section-title").forEach((title) => { title.addEventListener("click", () => { title.parentElement.classList.toggle("collapsed"); }); });
+    </script>
+  </body>
+</html>

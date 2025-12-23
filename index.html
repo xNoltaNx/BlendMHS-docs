@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlendMHS Documentation</title>
+<link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/video-player.css" />
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <!-- Sidebar Overlay for mobile -->
+      <div class="sidebar-overlay" onclick="closeSidebar()"></div>
+
+      <!-- Sidebar Navigation -->
+      <nav class="sidebar">
+        <button class="sidebar-close" onclick="closeSidebar()">×</button>
+        <div class="sidebar-header">
+          <a href="index.html">
+            <img
+              src="images/BlendMHS_BannerSq.png"
+              alt="BlendMHS"
+              class="sidebar-logo"
+              onerror="this.style.display='none'"
+            />
+          </a>
+          <div class="sidebar-title">
+            <span class="blend">Blend</span><span class="mhs">MHS</span> Docs
+          </div>
+        </div>
+
+        <div class="sidebar-nav">
+          <!-- Getting Started -->
+          <div class="nav-section">
+            <div class="nav-section-title">
+              <span>Getting Started</span>
+              <span class="chevron">▼</span>
+            </div>
+            <ul class="nav-items">
+              <li class="nav-item">
+                <a href="index.html" class="nav-link active">
+                  <span class="nav-icon">🏠</span>
+                  Overview
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- UI Panels -->
+          <div class="nav-section">
+            <div class="nav-section-title">
+              <span>UI Panels</span>
+              <span class="chevron">▼</span>
+            </div>
+            <ul class="nav-items">
+              <li class="nav-item">
+                <a href="pages/ui-panels/project-management.html" class="nav-link">
+                  <span class="nav-icon">📁</span>
+                  Project Management
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/ui-panels/quick-export.html" class="nav-link">
+                  <span class="nav-icon">⚡</span>
+                  Quick Export
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/ui-panels/layout-setup.html" class="nav-link">
+                  <span class="nav-icon">🗺️</span>
+                  Layout Setup
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/ui-panels/mesh-setup.html" class="nav-link">
+                  <span class="nav-icon">🔷</span>
+                  Mesh Setup
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/ui-panels/animation-setup.html" class="nav-link">
+                  <span class="nav-icon">🎬</span>
+                  Animation Setup
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/ui-panels/material-settings.html" class="nav-link">
+                  <span class="nav-icon">🎨</span>
+                  Material Settings
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Preferences -->
+          <div class="nav-section">
+            <div class="nav-section-title">
+              <span>Preferences</span>
+              <span class="chevron">▼</span>
+            </div>
+            <ul class="nav-items">
+              <li class="nav-item">
+                <a href="pages/preferences/addon-preferences.html" class="nav-link">
+                  <span class="nav-icon">⚙️</span>
+                  Addon Preferences
+                </a>
+              </li>
+            </ul>
+          </div>
+
+<!-- MHS Integration -->
+<div class="nav-section">
+            <div class="nav-section-title">
+              <span>MHS Integration</span>
+              <span class="chevron">▼</span>
+            </div>
+            <ul class="nav-items">
+              <li class="nav-item">
+                <a href="pages/mhs/mhs-toolkit.html" class="nav-link">
+                  <span class="nav-icon">🔧</span>
+                  MHS Toolkit
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Feedback -->
+          <div class="nav-section">
+            <div class="nav-section-title">
+              <span>Feedback</span>
+              <span class="chevron">▼</span>
+            </div>
+            <ul class="nav-items">
+              <li class="nav-item">
+                <a href="pages/mhs/feedback.html" class="nav-link">
+                  <span class="nav-icon">💬</span>
+                  Submit Feedback
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+<div class="sidebar-footer">
+          <img src="images/meta-horizon.svg" alt="Meta Horizon" class="sidebar-footer-logo" />
+        </div>
+      </nav>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="mobile-menu-toggle" onclick="toggleSidebar()">☰</button>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <div class="banner-container">
+          <img
+            src="images/BlendMHS_WebBanner.png"
+            alt="BlendMHS Banner"
+            class="banner"
+            onerror="this.style.display='none'"
+          />
+        </div>
+
+        <div class="container">
+          <header>
+            <p class="subtitle">
+              <span class="blender-text">Blender</span> to
+              <span class="mhs-text">Meta Horizon Studio</span> Pipeline
+            </p>
+            <div class="header-divider"></div>
+          </header>
+
+          <div class="card intro-card">
+            <p>
+              <strong>BlendMHS</strong> is a Blender addon designed to
+              streamline the content creation workflow for
+              <strong>Meta Horizon Studio (MHS)</strong>. It provides a complete
+              pipeline for exporting USD Scene Compositions, Static Meshes,
+              Animated Meshes, and Materials to Meta Horizon Studio.
+            </p>
+          </div>
+
+          <!-- Video Section -->
+          <div class="video-section">
+            <div class="video-container">
+              <div class="video-wrapper">
+                <div class="plyr-container">
+                  <video class="plyr-video" playsinline controls poster="images/BlendMHS_WebBanner.png">
+                    <source src="videos/overview.mp4" type="video/mp4" />
+                  </video>
+                  <div id="plyr-action-overlay" class="player-action-overlay">
+                    <span class="action-icon"></span>
+                    <span class="action-text"></span>
+                  </div>
+                  <button class="hotkeys-help-btn" id="hotkeys-help-btn" title="Keyboard Shortcuts (?)">?</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h2>Key Features</h2>
+          <div class="feature-grid">
+            <div class="feature-item">
+              <div class="feature-icon">📝</div>
+              <div class="feature-content">
+                <h4>Custom USD Exporter</h4>
+                <p>
+                  Purpose-built USD authoring specifically optimized for MHS —
+                  not Blender's built-in exporter
+                </p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">🔥</div>
+              <div class="feature-content">
+                <h4>Hot-Reload Workflow</h4>
+                <p>
+                  Auto-export on save combined with MHS hot-reloading for rapid
+                  iteration
+                </p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">🔗</div>
+              <div class="feature-content">
+                <h4>Automatic Instancing</h4>
+                <p>
+                  Detects Blender linked instances and exports them once with
+                  USD references
+                </p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">🧩</div>
+              <div class="feature-content">
+                <h4>Geometry Nodes Support - WIP</h4>
+                <p>
+                  Automatically extracts instances from geometry nodes modifiers
+                </p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">🎬</div>
+              <div class="feature-content">
+                <h4>Skeletal Animation</h4>
+                <p>
+                  Full UsdSkel support with armatures, skin weights, and action
+                  export
+                </p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">🎯</div>
+              <div class="feature-content">
+                <h4>Selective Action Export</h4>
+                <p>
+                  Choose which animation actions to include with per-action
+                  enable/disable
+                </p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">⚙️</div>
+              <div class="feature-content">
+                <h4>Modifier Support</h4>
+                <p>Option to apply modifiers during export for baked geometry</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">🎨</div>
+              <div class="feature-content">
+                <h4>Vertex Color Export</h4>
+                <p>
+                  Auto-detects and exports vertex color data as displayColor
+                  primvars
+                </p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">📐</div>
+              <div class="feature-content">
+                <h4>Coordinate Conversion</h4>
+                <p>Automatic Z-up to Y-up conversion for MHS compatibility</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">📦</div>
+              <div class="feature-content">
+                <h4>Multi-Layout Export</h4>
+                <p>
+                  Configure and export multiple scene compositions from one file
+                </p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">📊</div>
+              <div class="feature-content">
+                <h4>LOD Support</h4>
+                <p>
+                  Manual or auto-generated LODs with configurable distance
+                  ratios
+                </p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">🎭</div>
+              <div class="feature-content">
+                <h4>Material Parity</h4>
+                <p>
+                  Blender materials designed for 1:1 mapping to MHS
+                  renderer_module shaders
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-divider"></div>
+
+          <h2>Documentation</h2>
+          <p style="color: var(--text-muted); margin-bottom: 1.5rem">
+            Explore the BlendMHS documentation to learn about each panel and
+            feature.
+          </p>
+
+          <h3>UI Panels</h3>
+          <div class="doc-card-grid">
+            <a href="pages/ui-panels/project-management.html" class="doc-card">
+              <div class="doc-card-icon">📁</div>
+              <div class="doc-card-content">
+                <div class="doc-card-title">Project Management</div>
+                <div class="doc-card-description">
+                  Configure project paths, export directories, and manage your
+                  BlendMHS project settings.
+                </div>
+              </div>
+            </a>
+            <a href="pages/ui-panels/quick-export.html" class="doc-card">
+              <div class="doc-card-icon">⚡</div>
+              <div class="doc-card-content">
+                <div class="doc-card-title">Quick Export</div>
+                <div class="doc-card-description">
+                  One-click export tools for rapid iteration and hot-reload
+                  workflow integration.
+                </div>
+              </div>
+            </a>
+            <a href="pages/ui-panels/layout-setup.html" class="doc-card">
+              <div class="doc-card-icon">🗺️</div>
+              <div class="doc-card-content">
+                <div class="doc-card-title">Layout Setup</div>
+                <div class="doc-card-description">
+                  Configure scene composition exports with collection-based
+                  organization and multi-layout support.
+                </div>
+              </div>
+            </a>
+            <a href="pages/ui-panels/mesh-setup.html" class="doc-card">
+              <div class="doc-card-icon">🔷</div>
+              <div class="doc-card-content">
+                <div class="doc-card-title">Mesh Setup</div>
+                <div class="doc-card-description">
+                  Configure mesh export settings including LODs, UVs, vertex
+                  colors, and modifiers.
+                </div>
+              </div>
+            </a>
+            <a href="pages/ui-panels/animation-setup.html" class="doc-card">
+              <div class="doc-card-icon">🎬</div>
+              <div class="doc-card-content">
+                <div class="doc-card-title">Animation Setup</div>
+                <div class="doc-card-description">
+                  Skeletal animation export with UsdSkel support, action
+                  selection, and timeline integration.
+                </div>
+              </div>
+            </a>
+            <a href="pages/ui-panels/material-settings.html" class="doc-card">
+              <div class="doc-card-icon">🎨</div>
+              <div class="doc-card-content">
+                <div class="doc-card-title">Material Settings</div>
+                <div class="doc-card-description">
+                  Material configuration for MHS shader parity with texture
+                  mapping and shader selection.
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <h3>Configuration</h3>
+          <div class="doc-card-grid">
+            <a href="pages/preferences/addon-preferences.html" class="doc-card">
+              <div class="doc-card-icon">⚙️</div>
+              <div class="doc-card-content">
+                <div class="doc-card-title">Addon Preferences</div>
+                <div class="doc-card-description">
+                  Global addon settings, default paths, and configuration options
+                  that apply across all projects.
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <h3>MHS Integration</h3>
+          <div class="doc-card-grid">
+            <a href="pages/mhs/mhs-toolkit.html" class="doc-card">
+              <div class="doc-card-icon">🔧</div>
+              <div class="doc-card-content">
+                <div class="doc-card-title">MHS Toolkit</div>
+                <div class="doc-card-description">
+                  Meta Horizon Studio editor panel for automatic material
+                  processing and asset integration.
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div class="section-divider"></div>
+
+          <h2>USD Export Tools</h2>
+
+          <div class="card highlight-card">
+            <h3>
+              🔄 Hot-Reload Workflow
+              <span class="hot-reload-badge">Rapid Iteration</span>
+            </h3>
+            <p>
+              BlendMHS leverages MHS's <strong>Hot-Reloading</strong> capabilities
+              combined with an <strong>Auto-Export on Save</strong> feature. This
+              allows artists to work entirely in Blender — simply save your file
+              and your changes are automatically exported to USD and hot-reloaded
+              in Meta Horizon Studio for instant preview.
+            </p>
+          </div>
+
+          <h3>Export Scene Composition</h3>
+          <div class="card">
+            <div class="card-with-image">
+              <div class="card-content">
+                <p>
+                  Export complete scene layouts with full control over what gets
+                  included:
+                </p>
+                <ul>
+                  <li>
+                    <strong>Multiple Layout Configurations</strong> — Set up
+                    multiple scene compositions using Blender's native
+                    collections system
+                  </li>
+                  <li>
+                    <strong>Collection-Based Organization</strong> — Add
+                    collections to layouts; all child collections are
+                    automatically included
+                  </li>
+                  <li>
+                    <strong>Automatic Instancing</strong> — Duplicate meshes are
+                    detected and exported once with USD references
+                  </li>
+                  <li>
+                    <strong>Hierarchy Preservation</strong> — Parent-child
+                    relationships and transforms are maintained
+                  </li>
+                </ul>
+              </div>
+              <div class="screenshot-container">
+                <img
+                  src="images/SceneExport_Example.png"
+                  alt="Scene Export Panel"
+                  class="screenshot"
+                  onerror="this.parentElement.style.display='none'"
+                />
+                <p class="screenshot-caption">Scene Composition Export Panel</p>
+              </div>
+            </div>
+          </div>
+
+          <h3>Export USDA Mesh</h3>
+          <div class="card">
+            <p>
+              Export selected static mesh objects as individual USD files with
+              comprehensive geometry data:
+            </p>
+            <ul class="feature-list">
+              <li>
+                <strong>Geometry</strong> — Vertex positions with automatic Y-up
+                coordinate conversion
+              </li>
+              <li>
+                <strong>Normals</strong> — Per-face-vertex normals (faceVarying
+                interpolation)
+              </li>
+              <li>
+                <strong>UV Maps</strong> — Primary UV coordinates
+                (<code>st</code>) with indexed storage
+              </li>
+              <li>
+                <strong>Vertex Colors</strong> — Auto-detected
+                <code>displayColor</code> primvars
+              </li>
+              <li>
+                <strong>Materials</strong> — Automatic material export with
+                texture references
+              </li>
+            </ul>
+          </div>
+
+          <h3>Export Animated USDA Mesh</h3>
+          <div class="card">
+            <div class="card-with-image">
+              <div class="card-content">
+                <p>
+                  Export skinned meshes with skeletal animation using the
+                  <strong>UsdSkel</strong> schema:
+                </p>
+                <ul class="feature-list">
+                  <li>
+                    <strong>Full Geometry Export</strong> — All static mesh
+                    features (normals, UVs, vertex colors, materials)
+                  </li>
+                  <li>
+                    <strong>Skeleton Export</strong> — Complete bone hierarchy
+                    with bind transforms
+                  </li>
+                  <li>
+                    <strong>Animation Actions</strong> — Export Blender Actions
+                    as USD SkelAnimation prims
+                  </li>
+                  <li>
+                    <strong>Selective Action Export</strong> — Choose which
+                    actions to include via the animation list UI
+                  </li>
+                </ul>
+              </div>
+              <div class="screenshot-container">
+                <img
+                  src="images/Animation_Example.png"
+                  alt="Animation Export Panel"
+                  class="screenshot"
+                  onerror="this.parentElement.style.display='none'"
+                />
+                <p class="screenshot-caption">Animation Export Settings</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-divider"></div>
+
+          <h2>Export Structure</h2>
+          <div class="card">
+            <pre><code class="folder-structure"><span class="folder">{project_path}/</span>
+├── <span class="folder">layouts/</span>          <span class="comment"># Scene composition files (.usda)</span>
+├── <span class="folder">meshes/</span>           <span class="comment"># Individual mesh USD files</span>
+├── <span class="folder">materials/</span>        <span class="comment"># Material definition files</span>
+├── <span class="folder">textures/</span>         <span class="comment"># Texture assets (BC, MRO, N, E)</span>
+└── <span class="folder">shaders/</span>          <span class="comment"># Generated .surface shader files (WIP)</span></code></pre>
+          </div>
+
+          <footer>
+            <p>BlendMHS Documentation — Meta Horizon Studio Pipeline</p>
+            <p>© 2025 Meta</p>
+          </footer>
+        </div>
+      </main>
+    </div>
+
+    <!-- Hotkeys Modal -->
+    <div id="hotkeys-modal-overlay" class="hotkeys-modal-overlay">
+      <div class="hotkeys-modal">
+        <div class="hotkeys-modal-header">
+          <h3>⌨️ Keyboard Shortcuts</h3>
+          <button class="hotkeys-modal-close" id="hotkeys-modal-close">&times;</button>
+        </div>
+        <div class="hotkeys-section">
+          <div class="hotkeys-section-title">⏩ Seeking</div>
+          <div class="hotkeys-list">
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">←</span></div><span class="hotkey-action">Seek backward 1 second</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">→</span></div><span class="hotkey-action">Seek forward 1 second</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">Shift</span><span class="hotkey-plus">+</span><span class="hotkey-key">←</span></div><span class="hotkey-action">Seek backward 10 seconds</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">Shift</span><span class="hotkey-plus">+</span><span class="hotkey-key">→</span></div><span class="hotkey-action">Seek forward 10 seconds</span></div>
+          </div>
+        </div>
+        <div class="hotkeys-section">
+          <div class="hotkeys-section-title">🏃 Playback Speed</div>
+          <div class="hotkeys-list">
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">Ctrl</span><span class="hotkey-plus">+</span><span class="hotkey-key">←</span></div><span class="hotkey-action">Decrease speed</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">Ctrl</span><span class="hotkey-plus">+</span><span class="hotkey-key">→</span></div><span class="hotkey-action">Increase speed</span></div>
+          </div>
+        </div>
+        <div class="hotkeys-section">
+          <div class="hotkeys-section-title">▶️ Playback</div>
+          <div class="hotkeys-list">
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">Space</span><span class="hotkey-plus">or</span><span class="hotkey-key">K</span></div><span class="hotkey-action">Play / Pause</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">F</span></div><span class="hotkey-action">Toggle fullscreen</span></div>
+          </div>
+        </div>
+        <div class="hotkeys-section">
+          <div class="hotkeys-section-title">🔊 Volume</div>
+          <div class="hotkeys-list">
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">↑</span></div><span class="hotkey-action">Increase volume</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">↓</span></div><span class="hotkey-action">Decrease volume</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">M</span></div><span class="hotkey-action">Mute / Unmute</span></div>
+          </div>
+        </div>
+        <div class="hotkeys-footer">Press <kbd>?</kbd> or <kbd>Esc</kbd> to close</div>
+      </div>
+    </div>
+
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    <script src="js/video-player.js"></script>
+    <script>
+      function toggleSidebar() {
+        document.querySelector(".sidebar").classList.toggle("open");
+        document.querySelector(".sidebar-overlay").classList.toggle("active");
+      }
+
+      function closeSidebar() {
+        document.querySelector(".sidebar").classList.remove("open");
+        document.querySelector(".sidebar-overlay").classList.remove("active");
+      }
+
+      // Close sidebar when clicking a link (mobile)
+      document.querySelectorAll(".nav-link").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (window.innerWidth <= 1024) {
+            closeSidebar();
+          }
+        });
+      });
+
+      // Toggle nav sections
+      document.querySelectorAll(".nav-section-title").forEach((title) => {
+        title.addEventListener("click", () => {
+          title.parentElement.classList.toggle("collapsed");
+        });
+      });
+    </script>
+  </body>
+</html>

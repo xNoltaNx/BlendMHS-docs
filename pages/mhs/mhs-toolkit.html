@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MHS Toolkit - BlendMHS Documentation</title>
+<link rel="stylesheet" href="../../css/styles.css" />
+    <link rel="stylesheet" href="../../css/video-player.css" />
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <nav class="sidebar">
+        <div class="sidebar-header">
+          <a href="../../index.html">
+            <img src="../../images/BlendMHS_BannerSq.png" alt="BlendMHS" class="sidebar-logo" onerror="this.style.display='none'" />
+          </a>
+          <div class="sidebar-title">
+            <span class="blend">Blend</span><span class="mhs">MHS</span> Docs
+          </div>
+        </div>
+        <div class="sidebar-nav">
+          <div class="nav-section">
+            <div class="nav-section-title"><span>Getting Started</span><span class="chevron">▼</span></div>
+            <ul class="nav-items">
+              <li class="nav-item"><a href="../../index.html" class="nav-link"><span class="nav-icon">🏠</span>Overview</a></li>
+            </ul>
+          </div>
+          <div class="nav-section">
+            <div class="nav-section-title"><span>UI Panels</span><span class="chevron">▼</span></div>
+            <ul class="nav-items">
+              <li class="nav-item"><a href="../ui-panels/project-management.html" class="nav-link"><span class="nav-icon">📁</span>Project Management</a></li>
+              <li class="nav-item"><a href="../ui-panels/quick-export.html" class="nav-link"><span class="nav-icon">⚡</span>Quick Export</a></li>
+              <li class="nav-item"><a href="../ui-panels/layout-setup.html" class="nav-link"><span class="nav-icon">🗺️</span>Layout Setup</a></li>
+              <li class="nav-item"><a href="../ui-panels/mesh-setup.html" class="nav-link"><span class="nav-icon">🔷</span>Mesh Setup</a></li>
+              <li class="nav-item"><a href="../ui-panels/animation-setup.html" class="nav-link"><span class="nav-icon">🎬</span>Animation Setup</a></li>
+              <li class="nav-item"><a href="../ui-panels/material-settings.html" class="nav-link"><span class="nav-icon">🎨</span>Material Settings</a></li>
+            </ul>
+          </div>
+          <div class="nav-section">
+            <div class="nav-section-title"><span>Preferences</span><span class="chevron">▼</span></div>
+            <ul class="nav-items">
+              <li class="nav-item"><a href="../preferences/addon-preferences.html" class="nav-link"><span class="nav-icon">⚙️</span>Addon Preferences</a></li>
+            </ul>
+          </div>
+<div class="nav-section">
+            <div class="nav-section-title"><span>MHS Integration</span><span class="chevron">▼</span></div>
+            <ul class="nav-items">
+              <li class="nav-item"><a href="mhs-toolkit.html" class="nav-link active"><span class="nav-icon">🔧</span>MHS Toolkit</a></li>
+            </ul>
+          </div>
+          <div class="nav-section">
+            <div class="nav-section-title"><span>Feedback</span><span class="chevron">▼</span></div>
+            <ul class="nav-items">
+              <li class="nav-item"><a href="feedback.html" class="nav-link"><span class="nav-icon">💬</span>Submit Feedback</a></li>
+            </ul>
+          </div>
+        </div>
+<div class="sidebar-footer">
+          <img src="../../images/meta-horizon.svg" alt="Meta Horizon" class="sidebar-footer-logo" />
+        </div>
+      </nav>
+
+      <button class="mobile-menu-toggle" onclick="toggleSidebar()">☰</button>
+
+      <main class="main-content">
+        <div class="container">
+          <div class="breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span class="separator">›</span>
+            <span class="current">MHS Toolkit</span>
+          </div>
+
+          <div class="page-header">
+            <h1 class="page-title"><span class="icon">🔧</span>MHS Toolkit</h1>
+            <p class="page-description">Meta Horizon Studio editor panel for automatic material processing and asset integration.</p>
+          </div>
+
+            <h2>Overview</h2>
+            <div class="card intro-card">
+              <p>The <strong>MHS Toolkit</strong> is a companion panel that runs inside Meta Horizon Studio. It provides automatic processing of imported BlendMHS assets, ensuring materials are correctly configured and ready for use in your MHS project.</p>
+            </div>
+
+            <!-- Video Section -->
+            <div class="video-section">
+              <div class="video-container">
+                <div class="video-wrapper">
+                  <div class="plyr-container">
+                    <video class="plyr-video" playsinline controls poster="../../images/BlendMHS_WebBanner.png">
+                      <source src="../../videos/mhs-toolkit.mp4" type="video/mp4" />
+                    </video>
+                    <div id="plyr-action-overlay" class="player-action-overlay">
+                      <span class="action-icon"></span>
+                      <span class="action-text"></span>
+                    </div>
+                    <button class="hotkeys-help-btn" id="hotkeys-help-btn" title="Keyboard Shortcuts (?)">?</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <h2>Panel Location</h2>
+            <p><code>MHS Editor → Window → BlendMHS Toolkit</code></p>
+          </div>
+
+          <h2>Features</h2>
+
+          <h3>Automatic Material Processing</h3>
+          <div class="card highlight-card">
+            <h4>Seamless Material Integration</h4>
+            <p>When you import BlendMHS assets, the MHS Toolkit automatically:</p>
+            <ul class="feature-list">
+              <li>Detects imported USD materials</li>
+              <li>Assigns the correct MHS renderer_module shaders</li>
+              <li>Links texture assets to shader inputs</li>
+              <li>Configures material properties to match Blender settings</li>
+            </ul>
+          </div>
+
+          <h3>Asset Browser Integration</h3>
+          <div class="card">
+            <p>The toolkit integrates with MHS's asset browser to provide:</p>
+            <ul>
+              <li><strong>Quick Import:</strong> Drag-and-drop BlendMHS USD files</li>
+              <li><strong>Auto-Refresh:</strong> Detect changes when hot-reloading</li>
+              <li><strong>Batch Processing:</strong> Process multiple assets at once</li>
+            </ul>
+          </div>
+
+          <h2>Workflow</h2>
+          <div class="feature-grid">
+            <div class="feature-item">
+              <div class="feature-icon">1️⃣</div>
+              <div class="feature-content">
+                <h4>Export from Blender</h4>
+                <p>Use BlendMHS Quick Export to generate USD files.</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">2️⃣</div>
+              <div class="feature-content">
+                <h4>Import to MHS</h4>
+                <p>Add the USD files to your MHS project.</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">3️⃣</div>
+              <div class="feature-content">
+                <h4>Auto-Process</h4>
+                <p>MHS Toolkit automatically configures materials.</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">4️⃣</div>
+              <div class="feature-content">
+                <h4>Preview</h4>
+                <p>See your assets rendered correctly in VR.</p>
+              </div>
+            </div>
+          </div>
+
+          <h2>Hot-Reload Support</h2>
+          <div class="card">
+            <p>The MHS Toolkit fully supports MHS's hot-reload workflow:</p>
+            <ul>
+              <li><strong>File Watching:</strong> Monitors export directory for changes</li>
+              <li><strong>Auto-Refresh:</strong> Updates assets when files change</li>
+              <li><strong>Material Preservation:</strong> Maintains material assignments through reloads</li>
+            </ul>
+            <div class="feature-tag">Hot-Reload Compatible</div>
+          </div>
+
+          <h2>Toolkit Settings</h2>
+          <div class="card">
+            <table>
+              <tr>
+                <th>Setting</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                <td class="tool-name">Auto-Process Materials</td>
+                <td>Automatically process materials on import</td>
+              </tr>
+              <tr>
+                <td class="tool-name">Watch Directory</td>
+                <td>Path to monitor for BlendMHS exports</td>
+              </tr>
+              <tr>
+                <td class="tool-name">Shader Mapping</td>
+                <td>Custom shader mapping overrides</td>
+              </tr>
+              <tr>
+                <td class="tool-name">Verbose Logging</td>
+                <td>Enable detailed processing logs</td>
+              </tr>
+            </table>
+          </div>
+
+          <h2>Troubleshooting</h2>
+          <div class="card">
+            <h4>Materials Not Processing</h4>
+            <ul>
+              <li>Verify the MHS Toolkit panel is open and active</li>
+              <li>Check that Auto-Process Materials is enabled</li>
+              <li>Ensure USD files are in a supported format</li>
+            </ul>
+            <h4>Textures Missing</h4>
+            <ul>
+              <li>Verify textures are exported to the <code>textures/</code> folder</li>
+              <li>Check texture paths are relative in the USD file</li>
+              <li>Ensure texture formats are supported (PNG, JPG)</li>
+            </ul>
+          </div>
+
+          <footer>
+            <p>BlendMHS Documentation — Meta Horizon Studio Pipeline</p>
+            <p>© 2025 Meta</p>
+          </footer>
+        </div>
+      </main>
+    </div>
+
+    <!-- Hotkeys Modal -->
+    <div id="hotkeys-modal-overlay" class="hotkeys-modal-overlay">
+      <div class="hotkeys-modal">
+        <div class="hotkeys-modal-header">
+          <h3>⌨️ Keyboard Shortcuts</h3>
+          <button class="hotkeys-modal-close" id="hotkeys-modal-close">&times;</button>
+        </div>
+        <div class="hotkeys-section">
+          <div class="hotkeys-section-title">⏩ Seeking</div>
+          <div class="hotkeys-list">
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">←</span></div><span class="hotkey-action">Seek backward 1 second</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">→</span></div><span class="hotkey-action">Seek forward 1 second</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">Shift</span><span class="hotkey-plus">+</span><span class="hotkey-key">←</span></div><span class="hotkey-action">Seek backward 10 seconds</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">Shift</span><span class="hotkey-plus">+</span><span class="hotkey-key">→</span></div><span class="hotkey-action">Seek forward 10 seconds</span></div>
+          </div>
+        </div>
+        <div class="hotkeys-section">
+          <div class="hotkeys-section-title">🏃 Playback Speed</div>
+          <div class="hotkeys-list">
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">Ctrl</span><span class="hotkey-plus">+</span><span class="hotkey-key">←</span></div><span class="hotkey-action">Decrease speed</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">Ctrl</span><span class="hotkey-plus">+</span><span class="hotkey-key">→</span></div><span class="hotkey-action">Increase speed</span></div>
+          </div>
+        </div>
+        <div class="hotkeys-section">
+          <div class="hotkeys-section-title">▶️ Playback</div>
+          <div class="hotkeys-list">
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">Space</span><span class="hotkey-plus">or</span><span class="hotkey-key">K</span></div><span class="hotkey-action">Play / Pause</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">F</span></div><span class="hotkey-action">Toggle fullscreen</span></div>
+          </div>
+        </div>
+        <div class="hotkeys-section">
+          <div class="hotkeys-section-title">🔊 Volume</div>
+          <div class="hotkeys-list">
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">↑</span></div><span class="hotkey-action">Increase volume</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">↓</span></div><span class="hotkey-action">Decrease volume</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">M</span></div><span class="hotkey-action">Mute / Unmute</span></div>
+          </div>
+        </div>
+        <div class="hotkeys-footer">Press <kbd>?</kbd> or <kbd>Esc</kbd> to close</div>
+      </div>
+    </div>
+
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    <script src="../../js/video-player.js"></script>
+    <script>
+      function toggleSidebar() { document.querySelector(".sidebar").classList.toggle("open"); }
+      document.querySelectorAll(".nav-section-title").forEach((title) => { title.addEventListener("click", () => { title.parentElement.classList.toggle("collapsed"); }); });
+    </script>
+  </body>
+</html>

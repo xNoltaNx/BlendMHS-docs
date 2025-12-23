@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quick Export - BlendMHS Documentation</title>
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <link rel="stylesheet" href="../../css/video-player.css" />
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <nav class="sidebar">
+        <div class="sidebar-header">
+          <a href="../../index.html">
+            <img src="../../images/BlendMHS_BannerSq.png" alt="BlendMHS" class="sidebar-logo" onerror="this.style.display='none'" />
+          </a>
+          <div class="sidebar-title">
+            <span class="blend">Blend</span><span class="mhs">MHS</span> Docs
+          </div>
+        </div>
+        <div class="sidebar-nav">
+          <div class="nav-section">
+            <div class="nav-section-title"><span>Getting Started</span><span class="chevron">▼</span></div>
+            <ul class="nav-items">
+              <li class="nav-item"><a href="../../index.html" class="nav-link"><span class="nav-icon">🏠</span>Overview</a></li>
+            </ul>
+          </div>
+          <div class="nav-section">
+            <div class="nav-section-title"><span>UI Panels</span><span class="chevron">▼</span></div>
+            <ul class="nav-items">
+              <li class="nav-item"><a href="project-management.html" class="nav-link"><span class="nav-icon">📁</span>Project Management</a></li>
+              <li class="nav-item"><a href="quick-export.html" class="nav-link active"><span class="nav-icon">⚡</span>Quick Export</a></li>
+              <li class="nav-item"><a href="layout-setup.html" class="nav-link"><span class="nav-icon">🗺️</span>Layout Setup</a></li>
+              <li class="nav-item"><a href="mesh-setup.html" class="nav-link"><span class="nav-icon">🔷</span>Mesh Setup</a></li>
+              <li class="nav-item"><a href="animation-setup.html" class="nav-link"><span class="nav-icon">🎬</span>Animation Setup</a></li>
+              <li class="nav-item"><a href="material-settings.html" class="nav-link"><span class="nav-icon">🎨</span>Material Settings</a></li>
+            </ul>
+          </div>
+          <div class="nav-section">
+            <div class="nav-section-title"><span>Preferences</span><span class="chevron">▼</span></div>
+            <ul class="nav-items">
+              <li class="nav-item"><a href="../preferences/addon-preferences.html" class="nav-link"><span class="nav-icon">⚙️</span>Addon Preferences</a></li>
+            </ul>
+          </div>
+<div class="nav-section">
+            <div class="nav-section-title"><span>MHS Integration</span><span class="chevron">▼</span></div>
+            <ul class="nav-items">
+              <li class="nav-item"><a href="../mhs/mhs-toolkit.html" class="nav-link"><span class="nav-icon">🔧</span>MHS Toolkit</a></li>
+            </ul>
+          </div>
+          <div class="nav-section">
+            <div class="nav-section-title"><span>Feedback</span><span class="chevron">▼</span></div>
+            <ul class="nav-items">
+              <li class="nav-item"><a href="../mhs/feedback.html" class="nav-link"><span class="nav-icon">💬</span>Submit Feedback</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="sidebar-footer">
+          <img src="../../images/meta-horizon.svg" alt="Meta Horizon" class="sidebar-footer-logo" />
+        </div>
+      </nav>
+
+      <button class="mobile-menu-toggle" onclick="toggleSidebar()">☰</button>
+
+      <main class="main-content">
+        <div class="container">
+          <div class="breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span class="separator">›</span>
+            <span class="current">Quick Export</span>
+          </div>
+
+          <div class="page-header">
+              <h1 class="page-title"><span class="icon">⚡</span>Quick Export</h1>
+              <p class="page-description">One-click export tools for rapid iteration and hot-reload workflow integration with Meta Horizon Studio.</p>
+            </div>
+
+            <h2>Overview</h2>
+            <div class="card intro-card">
+              <p>The <strong>Quick Export</strong> panel provides streamlined export buttons for fast iteration. Instead of configuring options each time, Quick Export uses your preset configurations to export with a single click.</p>
+            </div>
+
+            <!-- Video Section -->
+            <div class="video-section">
+              <div class="video-container">
+                <div class="video-wrapper">
+                  <div class="plyr-container">
+                    <video class="plyr-video" playsinline controls poster="../../images/BlendMHS_WebBanner.png">
+                      <source src="../../videos/quick-export.mp4" type="video/mp4" />
+                    </video>
+                    <div id="plyr-action-overlay" class="player-action-overlay">
+                      <span class="action-icon"></span>
+                      <span class="action-text"></span>
+                    </div>
+                    <button class="hotkeys-help-btn" id="hotkeys-help-btn" title="Keyboard Shortcuts (?)">?</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <h2>Panel Location</h2>
+          <div class="card">
+            <p><code>3D Viewport → Sidebar (N) → BlendMHS → Quick Export</code></p>
+          </div>
+
+          <h2>Export Actions</h2>
+
+          <h3>Export All</h3>
+          <div class="card">
+            <p>Exports everything in one operation: layouts, meshes, materials, and textures. This is the recommended action for full scene updates.</p>
+            <div class="feature-tag">Recommended</div>
+          </div>
+
+          <h3>Export Layout Only</h3>
+          <div class="card">
+            <p>Exports only the scene composition (layout) file. Use this when you've only moved or added instances without modifying the underlying meshes.</p>
+          </div>
+
+          <h3>Export Selected</h3>
+          <div class="card">
+            <p>Exports only the currently selected objects. Useful for updating individual assets without re-exporting the entire scene.</p>
+          </div>
+
+          <h2>Hot-Reload Workflow</h2>
+          <div class="card highlight-card">
+            <h4>Rapid Iteration with MHS</h4>
+            <p>When working with Meta Horizon Studio's hot-reload feature, Quick Export becomes incredibly powerful:</p>
+            <ul class="feature-list">
+              <li>Make changes in Blender</li>
+              <li>Click Quick Export (or save with auto-export enabled)</li>
+              <li>MHS automatically detects the updated files</li>
+              <li>See your changes in the VR preview instantly</li>
+            </ul>
+          </div>
+
+          <h2>Export Cache</h2>
+          <div class="card">
+            <p>BlendMHS uses a smart caching system to skip unchanged files during export. This dramatically speeds up exports when only a few assets have changed.</p>
+            <h4>Cache Statistics</h4>
+            <p>After export, the panel displays statistics showing how many files were exported vs. skipped due to caching.</p>
+          </div>
+
+        <footer>
+          <p>BlendMHS Documentation — Meta Horizon Studio Pipeline</p>
+          <p>© 2025 Meta</p>
+        </footer>
+        </div>
+      </main>
+    </div>
+
+    <!-- Hotkeys Modal -->
+    <div id="hotkeys-modal-overlay" class="hotkeys-modal-overlay">
+      <div class="hotkeys-modal">
+        <div class="hotkeys-modal-header">
+          <h3>⌨️ Keyboard Shortcuts</h3>
+          <button class="hotkeys-modal-close" id="hotkeys-modal-close">&times;</button>
+        </div>
+        <div class="hotkeys-section">
+          <div class="hotkeys-section-title">⏩ Seeking</div>
+          <div class="hotkeys-list">
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">←</span></div><span class="hotkey-action">Seek backward 1 second</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">→</span></div><span class="hotkey-action">Seek forward 1 second</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">Shift</span><span class="hotkey-plus">+</span><span class="hotkey-key">←</span></div><span class="hotkey-action">Seek backward 10 seconds</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">Shift</span><span class="hotkey-plus">+</span><span class="hotkey-key">→</span></div><span class="hotkey-action">Seek forward 10 seconds</span></div>
+          </div>
+        </div>
+        <div class="hotkeys-section">
+          <div class="hotkeys-section-title">🏃 Playback Speed</div>
+          <div class="hotkeys-list">
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">Ctrl</span><span class="hotkey-plus">+</span><span class="hotkey-key">←</span></div><span class="hotkey-action">Decrease speed</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">Ctrl</span><span class="hotkey-plus">+</span><span class="hotkey-key">→</span></div><span class="hotkey-action">Increase speed</span></div>
+          </div>
+        </div>
+        <div class="hotkeys-section">
+          <div class="hotkeys-section-title">▶️ Playback</div>
+          <div class="hotkeys-list">
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">Space</span><span class="hotkey-plus">or</span><span class="hotkey-key">K</span></div><span class="hotkey-action">Play / Pause</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">F</span></div><span class="hotkey-action">Toggle fullscreen</span></div>
+          </div>
+        </div>
+        <div class="hotkeys-section">
+          <div class="hotkeys-section-title">🔊 Volume</div>
+          <div class="hotkeys-list">
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">↑</span></div><span class="hotkey-action">Increase volume</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">↓</span></div><span class="hotkey-action">Decrease volume</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">M</span></div><span class="hotkey-action">Mute / Unmute</span></div>
+          </div>
+        </div>
+        <div class="hotkeys-footer">Press <kbd>?</kbd> or <kbd>Esc</kbd> to close</div>
+      </div>
+    </div>
+
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    <script src="../../js/video-player.js"></script>
+    <script>
+      function toggleSidebar() { document.querySelector(".sidebar").classList.toggle("open"); }
+      document.querySelectorAll(".nav-section-title").forEach((title) => { title.addEventListener("click", () => { title.parentElement.classList.toggle("collapsed"); }); });
+    </script>
+  </body>
+</html>

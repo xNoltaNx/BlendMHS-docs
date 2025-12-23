@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation Setup - BlendMHS Documentation</title>
+<link rel="stylesheet" href="../../css/styles.css" />
+    <link rel="stylesheet" href="../../css/video-player.css" />
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <nav class="sidebar">
+        <div class="sidebar-header">
+          <a href="../../index.html">
+            <img src="../../images/BlendMHS_BannerSq.png" alt="BlendMHS" class="sidebar-logo" onerror="this.style.display='none'" />
+          </a>
+          <div class="sidebar-title">
+            <span class="blend">Blend</span><span class="mhs">MHS</span> Docs
+          </div>
+        </div>
+        <div class="sidebar-nav">
+          <div class="nav-section">
+            <div class="nav-section-title"><span>Getting Started</span><span class="chevron">▼</span></div>
+            <ul class="nav-items">
+              <li class="nav-item"><a href="../../index.html" class="nav-link"><span class="nav-icon">🏠</span>Overview</a></li>
+            </ul>
+          </div>
+          <div class="nav-section">
+            <div class="nav-section-title"><span>UI Panels</span><span class="chevron">▼</span></div>
+            <ul class="nav-items">
+              <li class="nav-item"><a href="project-management.html" class="nav-link"><span class="nav-icon">📁</span>Project Management</a></li>
+              <li class="nav-item"><a href="quick-export.html" class="nav-link"><span class="nav-icon">⚡</span>Quick Export</a></li>
+              <li class="nav-item"><a href="layout-setup.html" class="nav-link"><span class="nav-icon">🗺️</span>Layout Setup</a></li>
+              <li class="nav-item"><a href="mesh-setup.html" class="nav-link"><span class="nav-icon">🔷</span>Mesh Setup</a></li>
+              <li class="nav-item"><a href="animation-setup.html" class="nav-link active"><span class="nav-icon">🎬</span>Animation Setup</a></li>
+              <li class="nav-item"><a href="material-settings.html" class="nav-link"><span class="nav-icon">🎨</span>Material Settings</a></li>
+            </ul>
+          </div>
+          <div class="nav-section">
+            <div class="nav-section-title"><span>Preferences</span><span class="chevron">▼</span></div>
+            <ul class="nav-items">
+              <li class="nav-item"><a href="../preferences/addon-preferences.html" class="nav-link"><span class="nav-icon">⚙️</span>Addon Preferences</a></li>
+            </ul>
+          </div>
+<div class="nav-section">
+            <div class="nav-section-title"><span>MHS Integration</span><span class="chevron">▼</span></div>
+            <ul class="nav-items">
+              <li class="nav-item"><a href="../mhs/mhs-toolkit.html" class="nav-link"><span class="nav-icon">🔧</span>MHS Toolkit</a></li>
+            </ul>
+          </div>
+          <div class="nav-section">
+            <div class="nav-section-title"><span>Feedback</span><span class="chevron">▼</span></div>
+            <ul class="nav-items">
+              <li class="nav-item"><a href="../mhs/feedback.html" class="nav-link"><span class="nav-icon">💬</span>Submit Feedback</a></li>
+            </ul>
+          </div>
+        </div>
+<div class="sidebar-footer">
+          <img src="../../images/meta-horizon.svg" alt="Meta Horizon" class="sidebar-footer-logo" />
+        </div>
+      </nav>
+
+      <button class="mobile-menu-toggle" onclick="toggleSidebar()">☰</button>
+
+      <main class="main-content">
+        <div class="container">
+          <div class="breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span class="separator">›</span>
+            <span class="current">Animation Setup</span>
+          </div>
+
+          <div class="page-header">
+            <h1 class="page-title"><span class="icon">🎬</span>Animation Setup</h1>
+            <p class="page-description">Skeletal animation export with UsdSkel support, action selection, and timeline integration.</p>
+          </div>
+
+          <h2>Overview</h2>
+          <div class="card intro-card">
+            <p>The <strong>Animation Setup</strong> panel configures skeletal animation export using USD's UsdSkel schema. Export armatures with skin weights and multiple animation actions for use in Meta Horizon Studio.</p>
+          </div>
+
+          <!-- Video Section -->
+          <div class="video-section">
+            <div class="video-container">
+              <div class="video-wrapper">
+                <div class="plyr-container">
+                  <video class="plyr-video" playsinline controls poster="../../images/BlendMHS_WebBanner.png">
+                    <source src="../../videos/animation-setup.mp4" type="video/mp4" />
+                  </video>
+                  <div id="plyr-action-overlay" class="player-action-overlay">
+                    <span class="action-icon"></span>
+                    <span class="action-text"></span>
+                  </div>
+                  <button class="hotkeys-help-btn" id="hotkeys-help-btn" title="Keyboard Shortcuts (?)">?</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h2>Panel Location</h2>
+          <div class="card">
+            <p><code>3D Viewport → Sidebar (N) → BlendMHS → Animation Setup</code></p>
+          </div>
+
+          <h2>Armature Configuration</h2>
+
+          <h3>Armature Selection</h3>
+          <div class="card">
+            <p>Select the armature to export. The armature and all meshes skinned to it will be included in the animated USD file.</p>
+            <h4>Requirements</h4>
+            <ul>
+              <li>Armature must have at least one bone</li>
+              <li>Skinned meshes must have valid vertex groups matching bone names</li>
+              <li>At least one action should be assigned or available</li>
+            </ul>
+          </div>
+
+          <h3>Bone Hierarchy</h3>
+          <div class="card">
+            <p>BlendMHS exports the complete bone hierarchy with proper parent-child relationships. The skeleton structure is preserved exactly as defined in Blender.</p>
+          </div>
+
+          <h2>Action Selection</h2>
+          <div class="card highlight-card">
+            <h4>Selective Action Export</h4>
+            <p>Choose which animation actions to include in the export. Each action becomes a separate animation clip in USD.</p>
+          </div>
+
+          <h3>Action List</h3>
+          <div class="card">
+            <p>The panel displays all available actions with enable/disable toggles:</p>
+            <ul>
+              <li><strong>Enable All:</strong> Include all actions in export</li>
+              <li><strong>Disable All:</strong> Clear all action selections</li>
+              <li><strong>Individual Toggle:</strong> Enable/disable specific actions</li>
+            </ul>
+          </div>
+
+          <h3>Frame Range</h3>
+          <div class="card">
+            <p>Configure the frame range for each action:</p>
+            <ul>
+              <li><strong>Use Action Range:</strong> Export the full action keyframe range</li>
+              <li><strong>Custom Range:</strong> Specify start and end frames manually</li>
+              <li><strong>Scene Range:</strong> Use the scene's timeline range</li>
+            </ul>
+          </div>
+
+          <h2>UsdSkel Output</h2>
+          <div class="feature-grid">
+            <div class="feature-item">
+              <div class="feature-icon">🦴</div>
+              <div class="feature-content">
+                <h4>Skeleton Definition</h4>
+                <p>Complete bone hierarchy with rest poses and bind transforms.</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">🎯</div>
+              <div class="feature-content">
+                <h4>Skin Weights</h4>
+                <p>Vertex weights exported as UsdSkel primvars for GPU skinning.</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">📼</div>
+              <div class="feature-content">
+                <h4>Animation Clips</h4>
+                <p>Each action exported as a separate SkelAnimation with keyframe data.</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">📐</div>
+              <div class="feature-content">
+                <h4>Coordinate Conversion</h4>
+                <p>Automatic Z-up to Y-up conversion for all transforms and animations.</p>
+              </div>
+            </div>
+          </div>
+
+          <h2>Best Practices</h2>
+          <div class="card">
+            <ul class="feature-list">
+              <li>Name actions descriptively (e.g., "Idle", "Walk", "Run")</li>
+              <li>Keep bone counts reasonable for VR performance</li>
+              <li>Test animations in MHS after export to verify playback</li>
+              <li>Use consistent frame rates between Blender and MHS</li>
+            </ul>
+          </div>
+
+          <footer>
+            <p>BlendMHS Documentation — Meta Horizon Studio Pipeline</p>
+            <p>© 2025 Meta</p>
+          </footer>
+        </div>
+      </main>
+</div>
+
+    <!-- Hotkeys Modal -->
+    <div id="hotkeys-modal-overlay" class="hotkeys-modal-overlay">
+      <div class="hotkeys-modal">
+        <div class="hotkeys-modal-header">
+          <h3>⌨️ Keyboard Shortcuts</h3>
+          <button class="hotkeys-modal-close" id="hotkeys-modal-close">&times;</button>
+        </div>
+        <div class="hotkeys-section">
+          <div class="hotkeys-section-title">⏩ Seeking</div>
+          <div class="hotkeys-list">
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">←</span></div><span class="hotkey-action">Seek backward 1 second</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">→</span></div><span class="hotkey-action">Seek forward 1 second</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">Shift</span><span class="hotkey-plus">+</span><span class="hotkey-key">←</span></div><span class="hotkey-action">Seek backward 10 seconds</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">Shift</span><span class="hotkey-plus">+</span><span class="hotkey-key">→</span></div><span class="hotkey-action">Seek forward 10 seconds</span></div>
+          </div>
+        </div>
+        <div class="hotkeys-section">
+          <div class="hotkeys-section-title">🏃 Playback Speed</div>
+          <div class="hotkeys-list">
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">Ctrl</span><span class="hotkey-plus">+</span><span class="hotkey-key">←</span></div><span class="hotkey-action">Decrease speed</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">Ctrl</span><span class="hotkey-plus">+</span><span class="hotkey-key">→</span></div><span class="hotkey-action">Increase speed</span></div>
+          </div>
+        </div>
+        <div class="hotkeys-section">
+          <div class="hotkeys-section-title">▶️ Playback</div>
+          <div class="hotkeys-list">
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">Space</span><span class="hotkey-plus">or</span><span class="hotkey-key">K</span></div><span class="hotkey-action">Play / Pause</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">F</span></div><span class="hotkey-action">Toggle fullscreen</span></div>
+          </div>
+        </div>
+        <div class="hotkeys-section">
+          <div class="hotkeys-section-title">🔊 Volume</div>
+          <div class="hotkeys-list">
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">↑</span></div><span class="hotkey-action">Increase volume</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">↓</span></div><span class="hotkey-action">Decrease volume</span></div>
+            <div class="hotkey-item"><div class="hotkey-keys"><span class="hotkey-key">M</span></div><span class="hotkey-action">Mute / Unmute</span></div>
+          </div>
+        </div>
+        <div class="hotkeys-footer">Press <kbd>?</kbd> or <kbd>Esc</kbd> to close</div>
+      </div>
+    </div>
+
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    <script src="../../js/video-player.js"></script>
+    <script>
+      function toggleSidebar() { document.querySelector(".sidebar").classList.toggle("open"); }
+      document.querySelectorAll(".nav-section-title").forEach((title) => { title.addEventListener("click", () => { title.parentElement.classList.toggle("collapsed"); }); });
+    </script>
+  </body>
+</html>
