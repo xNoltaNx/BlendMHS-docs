@@ -8,7 +8,7 @@
     <style>
       /* Feedback Form Styles */
       .feedback-form {
-        max-width: 700px;
+        max-width: 100%;
       }
 
       .form-group {
@@ -145,7 +145,12 @@
         background: rgba(239, 68, 68, 0.4);
       }
 
-      /* Submit Button */
+/* Submit Button */
+      .form-actions {
+        text-align: center;
+        margin-top: 1.5rem;
+      }
+
       .submit-btn {
         background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
         color: white;
@@ -373,10 +378,12 @@
                 </div>
               </div>
 
+<div class="form-actions">
               <button type="submit" class="submit-btn" id="submit-btn">
                 <span class="btn-text">📤 Submit Feedback</span>
                 <span class="spinner"></span>
               </button>
+              </div>
 
               <div class="form-status" id="form-status"></div>
             </form>
