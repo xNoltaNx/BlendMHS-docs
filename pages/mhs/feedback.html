@@ -535,15 +535,35 @@
             formData.fileData = await fileToBase64(file);
           }
 
-          // Send to Google Apps Script
-          const response = await fetch(SCRIPT_URL, {
-            method: 'POST',
-            mode: 'no-cors', // Required for Apps Script
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData)
-          });
+// Send to Google Apps Script using form submission (avoids CORS issues)
+          const formElement = document.createElement('form');
+          formElement.method = 'POST';
+          formElement.action = SCRIPT_URL;
+          formElement.target = 'hidden-iframe';
+          
+          const dataInput = document.createElement('input');
+          dataInput.type = 'hidden';
+          dataInput.name = 'data';
+          dataInput.value = JSON.stringify(formData);
+          formElement.appendChild(dataInput);
+          
+          // Create hidden iframe to receive the response
+          let iframe = document.getElementById('hidden-iframe');
+          if (!iframe) {
+            iframe = document.createElement('iframe');
+            iframe.id = 'hidden-iframe';
+            iframe.name = 'hidden-iframe';
+            iframe.style.display = 'none';
+            document.body.appendChild(iframe);
+          }
+          
+          document.body.appendChild(formElement);
+          formElement.submit();
+          document.body.removeChild(formElement);
+
+          // Since we can't read the iframe response due to cross-origin, 
+          // assume success after a short delay
+          await new Promise(resolve => setTimeout(resolve, 1000));
 
           // With no-cors, we can't read the response, but if no error thrown, assume success
           showStatus('Thank you! Your feedback has been submitted successfully.', 'success');
