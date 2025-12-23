@@ -428,7 +428,7 @@
       // =====================================================
       // CONFIGURATION - Update this URL after deploying your Google Apps Script
       // =====================================================
-      const SCRIPT_URL = 'https://script.google.com/a/macros/meta.com/s/AKfycbys4gQ-WkvmCDL1xpThYmWgHhc6ULIzfd17sKN7IrABByWP13oiYgOQqvyHCCdsYfEY/exec'; // <-- Paste your deployed Apps Script URL here
+      const SCRIPT_URL = 'https://script.google.com/a/macros/meta.com/s/AKfycbzSd-K8cEFY8Q93buzt8euL1yr2n3xa1DjyE-a7NEv5KZvwoVd9jR59CHn-O_Qyndit/exec'; // <-- Paste your deployed Apps Script URL here
 
       // =====================================================
       // Form Handling
@@ -540,13 +540,13 @@
           formElement.method = 'POST';
           formElement.action = SCRIPT_URL;
           formElement.target = 'hidden-iframe';
-          
+
           const dataInput = document.createElement('input');
           dataInput.type = 'hidden';
           dataInput.name = 'data';
           dataInput.value = JSON.stringify(formData);
           formElement.appendChild(dataInput);
-          
+
           // Create hidden iframe to receive the response
           let iframe = document.getElementById('hidden-iframe');
           if (!iframe) {
@@ -556,12 +556,12 @@
             iframe.style.display = 'none';
             document.body.appendChild(iframe);
           }
-          
+
           document.body.appendChild(formElement);
           formElement.submit();
           document.body.removeChild(formElement);
 
-          // Since we can't read the iframe response due to cross-origin, 
+          // Since we can't read the iframe response due to cross-origin,
           // assume success after a short delay
           await new Promise(resolve => setTimeout(resolve, 1000));
 
